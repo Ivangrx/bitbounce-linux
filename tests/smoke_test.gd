@@ -27,6 +27,17 @@ func _initialize() -> void:
 	if str(a["positions"]) != str(b["positions"]):
 		errors.append("Seeded generation not deterministic")
 
+	var logo_cells := 0
+	for letter in "OMARCHY":
+		for row: String in LevelGenerator.WORD_LETTERS[letter]:
+			logo_cells += row.count("#")
+	for level in [4, 14, 24]:
+		var om: Dictionary = gen.generate(level, 7)
+		if om["easter_id"] != "omarchy" or (om["positions"] as Array).size() != logo_cells:
+			errors.append("Level %d is not the full OMARCHY level" % level)
+	if LevelGenerator.is_omarchy_level(5) or LevelGenerator.is_omarchy_level(3):
+		errors.append("OMARCHY level triggered on the wrong level")
+
 	var capped := LevelGenerator.ball_speed_for_level(999)
 	if not is_equal_approx(capped, LevelGenerator.MAX_SPEED):
 		errors.append("Speed cap failed: %s" % str(capped))

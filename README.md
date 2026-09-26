@@ -13,7 +13,10 @@ It uses a terminal-style look and **picks up your [Omarchy](https://omarchy.org)
 - 3 lives, score, and a saved personal best
 - Mouse or keyboard (including Vim keys), fullscreen with F11
 - Runs natively on Wayland (Hyprland) and also on X11
+- An OMARCHY level spelled out in bricks on level 4, then every 10 levels (14, 24, ...)
 - Rare hidden levels to find from level 3 onward
+
+![OMARCHY level](docs/omarchy-level.png)
 
 ## Install
 

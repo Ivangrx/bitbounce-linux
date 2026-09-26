@@ -47,6 +47,20 @@ const PATTERN_SALDUU: Array = [
 
 const EASTER_MIN_LEVEL := 3
 const EASTER_CHANCE := 0.14
+## Guaranteed OMARCHY word level: 4, 14, 24, ...
+const OMARCHY_LEVEL := 4
+const OMARCHY_LEVEL_EVERY := 10
+const WORD_BLOCK_SIZE := Vector2(19, 22)
+const WORD_BLOCK_GAP := Vector2(2, 2)
+const WORD_LETTERS := {
+	"O": [".###.", "#...#", "#...#", "#...#", "#...#", "#...#", ".###."],
+	"M": ["#...#", "##.##", "#.#.#", "#.#.#", "#...#", "#...#", "#...#"],
+	"A": [".###.", "#...#", "#...#", "#####", "#...#", "#...#", "#...#"],
+	"R": ["####.", "#...#", "#...#", "####.", "#.#..", "#..#.", "#...#"],
+	"C": [".####", "#....", "#....", "#....", "#....", "#....", ".####"],
+	"H": ["#...#", "#...#", "#...#", "#####", "#...#", "#...#", "#...#"],
+	"Y": ["#...#", "#...#", ".#.#.", "..#..", "..#..", "..#..", "..#.."],
+}
 const EASTER_BLOCK_SIZE := Vector2(20, 14)
 const EASTER_BLOCK_GAP := Vector2(2, 2)
 
@@ -55,6 +69,10 @@ const EASTER_BLOCK_GAP := Vector2(2, 2)
 
 static func ball_speed_for_level(level: int) -> float:
 	return minf(MAX_SPEED, BASE_SPEED + float(level - 1) * SPEED_INCREMENT)
+
+
+static func is_omarchy_level(level: int) -> bool:
+	return level >= OMARCHY_LEVEL and (level - OMARCHY_LEVEL) % OMARCHY_LEVEL_EVERY == 0
 
 
 static func complexity_for_level(level: int) -> int:
@@ -75,8 +93,13 @@ func generate(level: int, seed_value: int = -1) -> Dictionary:
 	var block_size := BLOCK_SIZE
 	var block_gap := BLOCK_GAP
 
+	if is_omarchy_level(level):
+		block_size = WORD_BLOCK_SIZE
+		block_gap = WORD_BLOCK_GAP
+		_stamp_word(cells, "OMARCHY", Vector2i(0, 1))
+		easter_id = "omarchy"
 	# Rare logo easter eggs from level 3+ (no score/rule changes)
-	if level >= EASTER_MIN_LEVEL and rng.randf() < EASTER_CHANCE:
+	elif level >= EASTER_MIN_LEVEL and rng.randf() < EASTER_CHANCE:
 		block_size = EASTER_BLOCK_SIZE
 		block_gap = EASTER_BLOCK_GAP
 		if rng.randf() < 0.5:
@@ -247,6 +270,19 @@ func _pattern_zigzag(w: int, h: int) -> Array:
 			row.append(1 if (x + (0 if y % 2 == 0 else 1)) % 3 != 0 else 0)
 		rows.append(row)
 	return rows
+
+
+func _stamp_word(cells: Dictionary, word: String, origin: Vector2i) -> void:
+	## Block letters from WORD_LETTERS, one column apart, one color per letter.
+	var x := origin.x
+	for i in word.length():
+		var glyph: Array = WORD_LETTERS[word[i]]
+		for y in glyph.size():
+			var row: String = glyph[y]
+			for gx in row.length():
+				if row[gx] == "#":
+					cells[Vector2i(x + gx, origin.y + y)] = i
+		x += (glyph[0] as String).length() + 1
 
 
 func _stamp_logo(cells: Dictionary, pattern: Array) -> void:

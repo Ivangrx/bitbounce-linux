@@ -6,6 +6,7 @@ extends Node
 const SHOTS := {
 	"menu": "res://scenes/menu.tscn",
 	"gameplay": "res://scenes/game.tscn",
+	"omarchy-level": "res://scenes/game.tscn",
 }
 const OUT_SIZE := Vector2i(1920, 1080)
 
@@ -23,7 +24,12 @@ func _run() -> void:
 		vp.size_2d_override_stretch = true
 		vp.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 		add_child(vp)
-		vp.add_child((load(SHOTS[shot_name]) as PackedScene).instantiate())
+		var scene := (load(SHOTS[shot_name]) as PackedScene).instantiate()
+		vp.add_child(scene)
+		if shot_name == "omarchy-level":
+			scene.level = LevelGenerator.OMARCHY_LEVEL
+			scene._spawn_level(scene.level)
+			scene._emit_hud()
 		for i in 45:
 			await get_tree().process_frame
 		var img := vp.get_texture().get_image()
