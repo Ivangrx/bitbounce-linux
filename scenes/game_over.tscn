@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgover001"]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_go"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_go")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.055, 0.06, 0.88)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Center/VBox"]
+layout_mode = 2
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="Center/VBox"]
+layout_mode = 2
+text = "SCORE  0"
+horizontal_alignment = 1
+
+[node name="BestLabel" type="Label" parent="Center/VBox"]
+layout_mode = 2
+text = "PERSONAL BEST  0"
+horizontal_alignment = 1
+
+[node name="RecordLabel" type="Label" parent="Center/VBox"]
+visible = false
+layout_mode = 2
+text = "NEW PERSONAL BEST"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Center/VBox"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="AgainButton" type="Button" parent="Center/VBox"]
+custom_minimum_size = Vector2(260, 60)
+layout_mode = 2
+text = "PLAY AGAIN"
+
+[node name="MenuButton" type="Button" parent="Center/VBox"]
+custom_minimum_size = Vector2(260, 56)
+layout_mode = 2
+text = "MAIN MENU"

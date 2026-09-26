@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Bitbounce
+GenericName=Arcade Game
+Comment=Endless brick-breaking arcade shell with an Omarchy-aware look
+Exec=bitbounce
+Icon=bitbounce
+Terminal=false
+Categories=Game;ArcadeGame;
+Keywords=breakout;arkanoid;arcade;bricks;omarchy;
+StartupWMClass=Bitbounce

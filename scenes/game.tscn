@@ -1,0 +1,174 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgame0001"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_gm"]
+[ext_resource type="Script" path="res://scripts/paddle.gd" id="2_paddle"]
+[ext_resource type="Script" path="res://scripts/ball.gd" id="3_ball"]
+[ext_resource type="PackedScene" path="res://scenes/game_over.tscn" id="4_go"]
+[ext_resource type="Script" path="res://scripts/pause_input.gd" id="5_pause"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_gm")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Blocks" type="Node2D" parent="."]
+
+[node name="Paddle" type="CharacterBody2D" parent="."]
+position = Vector2(480, 500)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_paddle")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle"]
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+position = Vector2(480, 480)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("3_ball")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="PauseInput" type="Node" parent="HUD"]
+process_mode = 3
+script = ExtResource("5_pause")
+
+[node name="TopBar" type="HBoxContainer" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_constants/separation = 24
+
+[node name="ScoreLabel" type="Label" parent="HUD/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SCORE 0"
+
+[node name="LevelLabel" type="Label" parent="HUD/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LVL 1"
+horizontal_alignment = 1
+
+[node name="LivesLabel" type="Label" parent="HUD/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "LIVE 3"
+horizontal_alignment = 2
+
+[node name="PauseButton" type="Button" parent="HUD/TopBar"]
+custom_minimum_size = Vector2(88, 40)
+layout_mode = 2
+text = "❚❚"
+
+[node name="LevelBanner" type="Label" parent="HUD"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -24.0
+offset_right = 200.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LEVEL CLEAR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EasterBanner" type="Label" parent="HUD"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -24.0
+offset_right = 200.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SALDUU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseOverlay" type="Control" parent="HUD"]
+visible = false
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="HUD/PauseOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.055, 0.06, 0.82)
+
+[node name="PauseTitle" type="Label" parent="HUD/PauseOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -100.0
+offset_right = 120.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="HUD/PauseOverlay"]
+custom_minimum_size = Vector2(240, 56)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -20.0
+offset_right = 120.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESUME"
+
+[node name="MenuButton" type="Button" parent="HUD/PauseOverlay"]
+custom_minimum_size = Vector2(240, 56)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = 48.0
+offset_right = 120.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "MAIN MENU"
+
+[node name="GameOverOverlay" parent="HUD" instance=ExtResource("4_go")]
+visible = false
+process_mode = 3

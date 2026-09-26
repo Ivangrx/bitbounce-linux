@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bball0001"]
+
+[ext_resource type="Script" path="res://scripts/ball.gd" id="1_ball"]
+
+[node name="Ball" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_ball")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

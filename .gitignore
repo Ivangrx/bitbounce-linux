@@ -1,0 +1,21 @@
+# Godot
+.godot/
+*.translation
+export_presets.cfg.bak
+
+# Local engine binary (packaging/build.sh downloads it here)
+tools
+
+# Builds
+build/
+
+# AUR build artifacts
+aur/*/pkg/
+aur/*/src/
+aur/*/*.tar.gz
+aur/*/*.pkg.tar.*
+
+# OS / editor
+.DS_Store
+*~
+*.swp

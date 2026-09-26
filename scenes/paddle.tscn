@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpaddle01"]
+
+[ext_resource type="Script" path="res://scripts/paddle.gd" id="1_paddle"]
+
+[node name="Paddle" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_paddle")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

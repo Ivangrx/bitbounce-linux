@@ -1,0 +1,51 @@
+; Engine configuration file.
+; Bitbounce for Linux (Godot 4.5)
+
+config_version=5
+
+[application]
+
+config/name="Bitbounce"
+config/description="Endless Breakout-style arcade for Linux. Follows your Omarchy theme."
+config/version="1.0.0"
+config/tags=PackedStringArray("arcade", "linux", "breakout")
+run/main_scene="res://scenes/main.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="bitbounce"
+config/features=PackedStringArray("4.5", "GL Compatibility")
+config/icon="res://assets/icon.svg"
+
+[autoload]
+
+Desktop="*res://scripts/desktop.gd"
+GameTheme="*res://scripts/theme.gd"
+SaveManager="*res://scripts/save_manager.gd"
+AudioManager="*res://scripts/audio_manager.gd"
+
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=540
+window/size/resizable=true
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+display_server/driver.linuxbsd="wayland"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=false
+
+[layer_names]
+
+2d_physics/layer_1="walls"
+2d_physics/layer_2="paddle"
+2d_physics/layer_3="blocks"
+2d_physics/layer_4="ball"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.07, 0.08, 0.09, 1)

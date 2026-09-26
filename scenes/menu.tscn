@@ -1,0 +1,134 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmenu0001"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_menu"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.05, 0.055, 0.06, 1)
+
+[node name="Scanline" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.49, 0.73, 0.42, 0.04)
+
+[node name="AccentLine" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 18.0
+offset_bottom = 20.0
+grow_horizontal = 2
+mouse_filter = 2
+color = Color(0.490196, 0.729412, 0.415686, 1)
+
+[node name="AccentLineBottom" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0.490196, 0.729412, 0.415686, 0.45)
+
+[node name="CornerTL" type="Label" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 28.0
+offset_right = 120.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0.49, 0.73, 0.42, 0.7)
+theme_override_font_sizes/font_size = 12
+text = "┌─ sess:01"
+
+[node name="CornerBR" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -44.0
+offset_right = -12.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.49, 0.73, 0.42, 0.7)
+theme_override_font_sizes/font_size = 12
+text = "tty://bitbounce ─┘"
+horizontal_alignment = 2
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="AsciiArt" type="Label" parent="Center/VBox"]
+layout_mode = 2
+text = "BITBOUNCE"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="Center/VBox"]
+layout_mode = 2
+text = "// BITBOUNCE"
+horizontal_alignment = 1
+
+[node name="StatusLine" type="Label" parent="Center/VBox"]
+layout_mode = 2
+text = "> init…"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Center/VBox"]
+layout_mode = 2
+text = "survive · score · beat your best"
+horizontal_alignment = 1
+
+[node name="BestLabel" type="Label" parent="Center/VBox"]
+layout_mode = 2
+text = "best_score=0"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="Center/VBox"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="Center/VBox"]
+custom_minimum_size = Vector2(240, 52)
+layout_mode = 2
+text = "> ./play"
+
+[node name="QuitButton" type="Button" parent="Center/VBox"]
+custom_minimum_size = Vector2(240, 52)
+layout_mode = 2
+text = "> ./quit"
