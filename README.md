@@ -3,6 +3,8 @@
 An endless brick-breaking arcade game for Linux, built with Godot 4.5.
 It uses a terminal-style look and **picks up your [Omarchy](https://omarchy.org) theme live**: switch themes and the game recolors itself while you play.
 
+![Gameplay and live theme change](docs/gameplay.gif)
+
 ![Menu](docs/menu.png)
 
 | Omarchy theme: hackerman | Omarchy theme: catppuccin-latte |
